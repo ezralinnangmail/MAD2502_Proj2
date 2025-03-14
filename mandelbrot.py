@@ -30,7 +30,20 @@ def get_escape_time_color_arr(
         c_arr: np.ndarray,
         max_iterations: int
 ) -> np.ndarray:
-    ...
+    """
+    Draws the Mandelbrot set based on the escape times of each point by assigning it a color-associated value: 0 (black), 1 (white), or something 0 < x < 1 (various grey).
+    
+    :param c_arr: ndarray of complex numbers
+    :param max_iterations: int for the number of iterations before stopping
+    :return: ndarray of color values
+
+    """
+    color_grid = np.empty(c_arr.shape)
+    for index, c in np.ndenumerate(c_arr):
+        escape_time = get_escape_time(c, max_iterations)
+        color_grid[index] = (max_iterations - escape_time + 1) / (max_iterations + 1)
+
+    return color_grid
 
 
 

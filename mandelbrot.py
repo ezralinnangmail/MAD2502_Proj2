@@ -5,6 +5,11 @@ def get_escape_time(c: complex, max_iterations: int) -> int | None:
     Gets the escape time for a complex number c, by calculating what c will be for each iteration of the mandelbrot set formula.
     If the number of iterations exceeds max_iterations without escaping, None is returned.
     If the magnitude is greater than two, the total calls are reported as the escape time.
+
+    :param c: complex number to use in the Mandelbrot set
+    :param max_iterations: int value to limit the number of iterations checked
+
+    :return: int of the number of iterations to escape the set | None if it never escapes in the max limit of iterations
     """
 
     caylee = c
@@ -29,9 +34,15 @@ def get_complex_grid(
     step: float
 ) -> np.ndarray:
     """
-        Generate a 2D NumPy array of complex numbers forming a grid from top_left to bottom_right.
-        The real part increases by step along columns, and the imaginary part decreases by step along rows.
-        """
+    Generate a 2D NumPy array of complex numbers forming a grid from top_left to bottom_right.
+    The real part increases by step along columns, and the imaginary part decreases by step along rows.
+
+    :param top_left: complex number for the top left value of the grid
+    :param bottom_right: complex number for the (excluded) bottom right value of the grid
+    :param step: float distance between columns and rows
+
+    :return: ndarray representing the complex grid created
+    """
     # Generate real and imaginary parts
     real_values = np.arange(top_left.real, bottom_right.real, step)
     imag_values = np.arange(top_left.imag, bottom_right.imag, -step)  # Decreasing order

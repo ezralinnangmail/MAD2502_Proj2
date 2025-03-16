@@ -1,6 +1,12 @@
 import numpy as np
 
 def get_escape_time(c: complex, max_iterations: int) -> int | None:
+    """
+    Gets the escape time for a complex number c, by calculating what c will be for each iteration of the mandelbrot set formula.
+    If the number of iterations exceeds max_iterations without escaping, None is returned.
+    If the magnitude is greater than two, the total calls are reported as the escape time.
+    """
+
     caylee = c
     total_call = 0
     if abs(c) > 2:

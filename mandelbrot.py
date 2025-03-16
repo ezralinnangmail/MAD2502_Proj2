@@ -65,7 +65,7 @@ def get_escape_time_color_arr(
     :param c_arr: ndarray of complex numbers
     :param max_iterations: int for the number of iterations before stopping
     
-    :return: ndarray of color values
+    :return: ndarray of color values, can be used to create image of Mandelbrot set
     """
     # Create an empty grid with the same shape as the inputted complex grid.
     color_grid = np.empty(c_arr.shape)
@@ -90,6 +90,12 @@ def get_julia_color_arr(
 ) -> np.ndarray:
     """
     Returns a grid with escape times, converted to colors based on the 'speed' of their escape.
+
+    :param complex_arr: ndarray of complex numbers
+    :param c: complex number to use in the Mandelbrot set
+    :param max_iterations: int for the number of iterations before stopping
+
+    :return: ndarray of color values, can be used to create image of Mandelbrot set
     """
     colored_grid = np.empty(complex_arr.shape)
     for ind,z in np.ndenumerate(complex_arr):
@@ -98,8 +104,8 @@ def get_julia_color_arr(
         while abs(z_val) <=2 and counter < max_iterations:
             z_val = z_val**2 +c
             counter+=1
-        if count<max_iterations:
-            colored_grid[ind] = (max_iterations - count +1)/(max_iterations+1)
+        if counter<max_iterations:
+            colored_grid[ind] = (max_iterations - counter +1)/(max_iterations+1)
         else:
-            colored_grid[index] = 0
+            colored_grid[ind] = 0
     return colored_grid

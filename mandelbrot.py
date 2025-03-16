@@ -67,4 +67,18 @@ def get_julia_color_arr(
         c: complex,
         max_iterations: int
 ) -> np.ndarray:
-    ...
+    """
+    Returns a grid with escape times, converted to colors based on the 'speed' of their escape.
+    """
+    colored_grid = np.empty(complex_arr.shape)
+    for ind,z in np.ndenumerate(complex_arr):
+        counter = 0
+        z_val = z
+        while abs(z_val) <=2 and counter < max_iterations:
+            z_val = z_val**2 +c
+            counter+=1
+        if count<max_iterations:
+            colored_grid[ind] = (max_iterations - count +1)/(max_iterations+1)
+        else:
+            colored_grid[index] = 0
+    return colored_grid

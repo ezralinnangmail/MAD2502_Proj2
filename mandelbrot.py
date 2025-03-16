@@ -47,10 +47,13 @@ def get_escape_time_color_arr(
     
     :param c_arr: ndarray of complex numbers
     :param max_iterations: int for the number of iterations before stopping
+    
     :return: ndarray of color values
-
     """
+    # Create an empty grid with the same shape as the inputted complex grid.
     color_grid = np.empty(c_arr.shape)
+
+    # Obtain the escape time of each point in the grid and assign it a value from 0 to 1 based on escape times.
     for index, c in np.ndenumerate(c_arr):
         escape_time = get_escape_time(c, max_iterations)
         color_grid[index] = (max_iterations - escape_time + 1) / (max_iterations + 1)

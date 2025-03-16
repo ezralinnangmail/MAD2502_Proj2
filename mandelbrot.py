@@ -1,7 +1,7 @@
 import numpy as np
 
 def get_escape_time(c: complex, max_iterations: int) -> int | None:
-    caylee = c**2+c
+    caylee = c
     total_call = 1
     if abs(c) > 2:
         return 0

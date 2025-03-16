@@ -73,6 +73,10 @@ def get_escape_time_color_arr(
     # Obtain the escape time of each point in the grid and assign it a value from 0 to 1 based on escape times.
     for index, c in np.ndenumerate(c_arr):
         escape_time = get_escape_time(c, max_iterations)
+        
+        if escape_time is None:
+            escape_time = max_iterations + 1
+            
         color_grid[index] = (max_iterations - escape_time + 1) / (max_iterations + 1)
 
     return color_grid
